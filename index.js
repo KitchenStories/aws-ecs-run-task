@@ -66,6 +66,7 @@ const main = async () => {
     const taskArn = task.tasks[0].taskArn;
     core.setOutput("task-arn", taskArn);
 
+    /* Put this in an if at some point if we need it.
     core.debug("Waiting for task to finish...");
     await ecs.waitFor("tasksStopped", { cluster, tasks: [taskArn] }).promise();
 
@@ -83,6 +84,8 @@ const main = async () => {
         `task failed, you can check the error on Amazon ECS console: https://console.aws.amazon.com/ecs/home?region=${AWS.config.region}#/clusters/${cluster}/tasks/${taskHash}/details`
       );
     }
+    */
+    core.setOutput("status", "success");
   } catch (error) {
     core.setFailed(error.message);
   }
